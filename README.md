@@ -41,33 +41,32 @@ s=socket.socket()
 s.bind(('localhost',8000))
 s.listen(5)
 c,addr=s.accept()
+address={"165.165.80.80":"6A:08:AA:C2","165.165.79.1":"8A:BC:E3:FA"};
 while True:
- i=input("Enter a data: ")
- c.send(i.encode())
- ack=c.recv(1024).decode()
- if ack:
- print(ack)
- continue
- else:
- c.close()
- break
+ ip=c.recv(1024).decode()
+ try:
+ c.send(address[ip].encode())
+ except KeyError:
+ c.send("Not Found".encode()) 
 ```
 # SERVER:
 ```
 import socket
 s=socket.socket()
 s.connect(('localhost',8000))
-while True:
- print(s.recv(1024).decode())
- s.send("Acknowledgement Recived".encode())
+print(s.getsockname())
+print(s.recv(1024).decode())
+s.send("acknowledgement recived from the server".encode())
 ```
 
 # OUTPUT:
 # CLIENT OUTPUT:
-![Screenshot (44)](https://github.com/ArpanBardhan/19CS406-EX-1/assets/119405037/af7a594f-4d29-48c4-a249-4cd89e87fc2d)
+
+![Screenshot (93)](https://github.com/ArpanBardhan/19CS406-EX-1/assets/119405037/aa40fdfc-71a7-4406-8cc2-1e441ea1601d)
 
 # SERVER OUTPUT:
-![Screenshot (45)](https://github.com/ArpanBardhan/19CS406-EX-1/assets/119405037/13dcb56e-79be-46cc-b8f5-4ff696300767)
+
+![Screenshot (94)](https://github.com/ArpanBardhan/19CS406-EX-1/assets/119405037/2dedea7d-997d-477b-bcb5-c6412652af04)
 
 
 
