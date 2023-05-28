@@ -71,5 +71,6 @@ s.send("acknowledgement recived from the server".encode())
 
 
 # RESULT: 
-Thus, python program to perform stop and wait protocol was successfully executed.
+Thus, the program to implement socket programming date and time display from client to
+server using TCP Sockets was successfully executed.
 
